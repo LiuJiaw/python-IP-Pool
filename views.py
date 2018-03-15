@@ -15,8 +15,6 @@ from threading import Lock
 
 #存储添加的url
 urllist=[]
-#线程标志
-thread_mark=0
 #线程锁
 lock=Lock()
 
@@ -25,8 +23,8 @@ class views_thread(Thread):
         Thread.__init__(self)
         
     def run(self):
-        global urllist,thread_mark
-        while thread_mark:
+        global urllist
+        while Global.thread_mark:
             #检测IP池是否为空
             if not IPPool.getramip():
                 Global.instatesinf('等待ip...'.decode('utf-8'))
