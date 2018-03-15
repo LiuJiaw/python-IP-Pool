@@ -17,7 +17,7 @@ from threading import Lock
 urllist=[]
 #线程标志
 thread_mark=0
-
+#线程锁
 lock=Lock()
 
 class views_thread(Thread):
