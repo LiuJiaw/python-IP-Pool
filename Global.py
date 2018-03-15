@@ -32,6 +32,8 @@ api=''
 speed=''
 #消息队列，IP池以及views中的状态信息会进入到此队列
 message_queue=Queue()
+#线程标志
+thread_mark=0
 
 
 def instatesinf(text):
