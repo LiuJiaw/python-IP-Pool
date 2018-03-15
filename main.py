@@ -5,10 +5,6 @@ Created on Mon Mar 12 17:41:29 2018
 @author: Administrator
 """
 
-#https://blog.csdn.net/dala_da/article/details/79463407
-#https://blog.csdn.net/dala_da/article/details/79401163
-#555980204345151
-
 import sys
 from PyQt4 import QtCore,QtGui,uic
 import views
@@ -79,8 +75,7 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         self.textEdit.append(text.decode(type_["encoding"]))
     #暂停所有线程   
     def stop(self):
-        views.thread_mark=0
-        IPPool.thread_mark=0
+        Global.thread_mark=0
     #实时显示当前状态信息    
     def Update(self):
         global message_queue
