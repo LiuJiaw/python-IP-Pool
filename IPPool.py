@@ -12,7 +12,7 @@ import requests
 import re
 from threading import Thread
 
-#线程池，该.py文件中均为对线程池操作的函数
+#IP池，该.py文件中均为对IP池操作的函数
 IPPool=[]
 #线程运行标志
 thread_mark=0
