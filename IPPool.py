@@ -14,8 +14,6 @@ from threading import Thread
 
 #IP池，该.py文件中均为对IP池操作的函数
 IPPool=[]
-#线程运行标志
-thread_mark=0
 
 class IPPool_thread(Thread):
     def __int__(self):  
@@ -23,7 +21,7 @@ class IPPool_thread(Thread):
     #该线程的主要作用为维护ip池数量
     def run(self):
         global IPPool
-        while thread_mark:
+        while Global.thread_mark:
             if poolmissnum()>0:
                 fillpool()
 #            showme()
