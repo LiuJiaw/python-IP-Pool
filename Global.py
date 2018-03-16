@@ -6,6 +6,7 @@ Created on Mon Mar 12 21:35:32 2018
 """
 
 from Queue import Queue
+import datetime
 
 
 #订单号
@@ -36,17 +37,6 @@ message_queue=Queue()
 thread_mark=0
 
 
-def instatesinf(text):
-    global message_queue
-    message_queue.put(text)
-    
-def outstatesinf():
-    global message_queue
-    return message_queue.get()
-    
-def getsize():
-    return message_queue.qsize()
-
 def settidValue(Str):
     global tid
     tid=Str
@@ -72,10 +62,10 @@ def setexclude_portsValue(Str):
     
 def settimesValue(Str):
     global times
-    if str=='':
+    try:
+        times=int(Str)
+    except:
         times=3
-        return
-    times=int(Str)
     
 def setprotocolValue(Str):
     global protocol
@@ -100,10 +90,10 @@ def setsortbyValue(Str):
     
 def setnumValue(Str):
     global num
-    if num=='':
-        num=5
-        return
-    num=int(Str)
+    try:
+        num=int(Str)
+    except:
+        num=30
     
 def setspeedValue(Str):
     global speed
@@ -175,3 +165,17 @@ def getspeedValue():
 def getapiValue():
     global api
     return api
+
+#将消息投进消息队列中
+def instatesinf(text):
+    global message_queue
+    nowtime=datetime.datetime.now()
+    text=nowtime.strftime('%H:%M:%S')+':'+text
+    message_queue.put(text)
+
+#弹出消息队列中的首位消息  
+def outstatesinf():
+    global message_queue
+    if message_queue.qsize():
+        return message_queue.get()
+    return 

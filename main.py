@@ -50,6 +50,9 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
     #开始进行    
     def start(self):
         Global.settidValue(self.tidEdit.text())
+        if not Global.gettidValue(): 
+            Global.instatesinf("您未输入订单号！".decode('utf-8'))
+            return
         Global.setoperatorValue(self.operatorcomboBox.currentText())
         Global.setportsValue(self.portsEdit.text())
         Global.setexclude_portsValue(self.exclude_portsEdit.text())
@@ -60,10 +63,9 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         Global.settimesValue(self.timesEdit.text())
         Global.setspeedValue(self.speedcomboBox.currentText())
         Global.setapiValue()
-        IPPool.thread_mark=1
+        Global.thread_mark=1
         #IP池维护操作开始执行
         IPPool.start()
-        views.thread_mark=1
         #页面访问操作开始执行
         views.start()
     #显示help文档信息
@@ -79,8 +81,8 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
     #实时显示当前状态信息    
     def Update(self):
         global message_queue
-        if Global.getsize():
-            text=Global.outstatesinf()
+        text=Global.outstatesinf()
+        if text:
             self.textEdit.append(text)
     
 
