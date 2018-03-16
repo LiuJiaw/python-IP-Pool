@@ -7,32 +7,19 @@ Created on Tue Mar 13 12:37:18 2018
 
 import Global
 import random
-import time
 import requests
 import re
-from threading import Thread
 
 #IP池，该.py文件中均为对IP池操作的函数
 IPPool=[]
 
-class IPPool_thread(Thread):
-    def __int__(self):  
-        Thread.__init__(self)
-    #该线程的主要作用为维护ip池数量
-    def run(self):
-        global IPPool
-        while Global.thread_mark:
-            if poolmissnum()>0:
-                fillpool()
-#            showme()
-            time.sleep(10)
-        
-            
-            
-def start():
-    thread=IPPool_thread()
-    thread.setDaemon(True)
-    thread.start()
+
+def work():
+    global IPPool
+    if Global.thread_mark:
+        if poolmissnum()>0:
+            fillpool()
+#       showme()
 
 #检测IP池是否为满,返回IP池缺少的个数
 def poolmissnum():

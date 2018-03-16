@@ -9,8 +9,8 @@ import sys
 from PyQt4 import QtCore,QtGui,uic
 import views
 import Global
-import IPPool
 import chardet
+import workmanage
 
 qtCreatorFile = "UI.ui" 
  
@@ -47,6 +47,7 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         self.numEdit.clear()
         self.URLEdit.clear()
         self.textEdit.clear()
+        self.timesEdit.text()
     #开始进行    
     def start(self):
         Global.settidValue(self.tidEdit.text())
@@ -64,10 +65,8 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         Global.setspeedValue(self.speedcomboBox.currentText())
         Global.setapiValue()
         Global.thread_mark=1
-        #IP池维护操作开始执行
-        IPPool.start()
-        #页面访问操作开始执行
-        views.start()
+        workmanage.start()
+        
     #显示help文档信息
     def help_(self):
         f=open("help.txt","r")
@@ -75,9 +74,11 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         f.close()
         type_=chardet.detect(text)
         self.textEdit.append(text.decode(type_["encoding"]))
+        
     #暂停所有线程   
     def stop(self):
         Global.thread_mark=0
+        
     #实时显示当前状态信息    
     def Update(self):
         global message_queue
