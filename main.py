@@ -33,7 +33,7 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         self.timer.timeout.connect(self.Update)
         self.timer.start(200)
        
-    #实现将所需加入的Url
+    #实现将加入所需的Url
     def add(self):
         url=self.URLEdit.text()
         self.textEdit.append("已添加：".decode('utf-8')+url) 
